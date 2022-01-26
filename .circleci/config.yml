@@ -16,7 +16,7 @@ jobs:
       - run: 
           name: Docker login 
           command: |
-            echo "$QUAY_USER" | docker login quay.io -u "$QUAY_PASS" --password-stdin
+            echo "$QUAY_PASS" | docker login quay.io -u "$QUAY_USER" --password-stdin
 
       # - run: 
       #     name: Build image
