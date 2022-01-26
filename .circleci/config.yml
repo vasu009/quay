@@ -1,13 +1,6 @@
 version: 2.1
 
 jobs:
-  test:
-    working_directory: ~/circleci-python
-    docker:
-      - image: "python:latest"
-    steps:
-      - checkout
-      - run: python3 basi-add.py
 
   build:
     working_directory: ~/circleci-python
@@ -16,31 +9,28 @@ jobs:
     steps:
       - checkout
 
-      - setup_remote_docker:
-          version: 19.03.13
-          docker_layer_caching: true
+      # - setup_remote_docker:
+      #     version: 19.03.13
+      #     docker_layer_caching: true
 
       - run: 
-          name: Docker login
+          name: Docker login 
           command: |
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            echo "$QUAY_USER" | docker login quay.io -u "$QUAY_PASS" --password-stdin
 
-      - run: 
-          name: Build image
-          command: |
-            docker build -t first_build:0.1 .   
+      # - run: 
+      #     name: Build image
+      #     command: |
+      #       docker build -t first_build:0.1 .   
 
-      - run: 
-          name: Push image
-          command: |
-            docker tag first_build:0.1 gowri45/vasu_2511  
-            docker push gowri45/vasu_2511          
+      # - run: 
+      #     name: Push image
+      #     command: |
+      #       docker tag first_build:0.1 gowri45/vasu_2511  
+      #       docker push gowri45/vasu_2511          
       
 
 workflows:
   build_and_test:
     jobs:
-      - test
-      - build:
-          requires:
-            - test
+      - build
