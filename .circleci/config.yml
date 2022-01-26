@@ -28,7 +28,7 @@ jobs:
             docker tag my-image:latest quay.io/$QUAY_USER/myrepo
             docker push quay.io/$QUAY_USER/myrepo         
 
-#end
+
 
 workflows:
   build_and_test:
