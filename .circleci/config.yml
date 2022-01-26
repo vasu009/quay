@@ -18,17 +18,18 @@ jobs:
           command: |
             echo "$QUAY_PASS" | docker login quay.io -u "$QUAY_USER" --password-stdin
 
-      # - run: 
-      #     name: Build image
-      #     command: |
-      #       docker build -t first_build:0.1 .   
+      - run: 
+          name: Build image
+          command: |
+            docker build -t quay.io/$QUAY_USER/my-image:latest .  
 
-      # - run: 
-      #     name: Push image
-      #     command: |
-      #       docker tag first_build:0.1 gowri45/vasu_2511  
-      #       docker push gowri45/vasu_2511          
-      
+      - run: 
+          name: Push image
+          command: |
+            docker tag -t my-image:latest quay.io/$QUAY_USER/myrepo
+            docker push quay.io/$QUAY_USER/myrepo         
+
+# docker tag first_build:0.1 gowri45/vasu_2511  
 
 workflows:
   build_and_test:
