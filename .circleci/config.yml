@@ -20,11 +20,12 @@ jobs:
       - run: 
           name: Build image
           command: |
-            docker build -t quay.io/$QUAY_USER/my-image:latest .  
+            docker build -t my-image:latest .  
 
       - run: 
           name: Push image
           command: |
+            docker tag my-image:latest quay.io/$QUAY_USER/myrepo
             docker push quay.io/$QUAY_USER/myrepo         
 
 #end
