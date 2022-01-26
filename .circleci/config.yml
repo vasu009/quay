@@ -25,7 +25,7 @@ jobs:
       - run: 
           name: Push image
           command: |
-            docker tag -t my-image:latest quay.io/$QUAY_USER/myrepo
+            docker tag my-image:latest quay.io/$QUAY_USER/myrepo
             docker push quay.io/$QUAY_USER/myrepo         
 
 
